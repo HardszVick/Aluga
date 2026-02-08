@@ -1,11 +1,11 @@
 "use client";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { IconButton, InputAdornment, TextFieldProps } from "@mui/material";
+import { IconButton, InputAdornment } from "@mui/material";
 import { useState } from "react";
-import { AluInput } from "./Input";
+import { AluInput, AluInputProps } from "./Input";
 
-const AluPasswordInput = (props: TextFieldProps) => {
+export const AluPasswordInput = (props: AluInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -30,5 +30,3 @@ const AluPasswordInput = (props: TextFieldProps) => {
     />
   );
 };
-
-export default AluPasswordInput;

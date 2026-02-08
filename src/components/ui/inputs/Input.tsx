@@ -1,6 +1,7 @@
 "use client";
 
 import { TextField, TextFieldProps, styled } from "@mui/material";
+import { ChangeEvent } from "react";
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   "& .MuiOutlinedInput-root": {
@@ -14,10 +15,20 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-export const AluInput = (props: TextFieldProps) => {
+export type AluInputProps = TextFieldProps & {
+  onChangeValue?: (value: string) => void
+}
+
+export const AluInput = ({ onChangeValue, onChange, ...props }: AluInputProps) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+    onChange?.(event);
+    onChangeValue?.(event.target.value);
+  }
+
   return (
     <StyledTextField
       {...props}
+      onChange={e => handleChange(e)}
       slotProps={{
         input: {
           ...props.slotProps?.input,
