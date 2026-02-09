@@ -1,0 +1,42 @@
+# Dependências
+node_modules/
+
+# Build do Next.js
+.next/
+out/
+
+# Variáveis de Ambiente (CRÍTICO: Nunca suba seus segredos)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Debug do VS Code e ferramentas
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Cache de ferramentas de estilização/lint
+.eslintcache
+.stylelintcache
+
+# Testes
+/coverage
+.nyc_output
+
+# Docker (opcional, se usar)
+.dockerignore
