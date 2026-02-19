@@ -1,4 +1,4 @@
-import { AluSearchProductsList } from "./_components/ProductsList";
+import { AluSearchProductsList } from "@/features/search/components/ProductsList";
 
 type SearchParams = Promise<{ keyword?: string; }>;
 

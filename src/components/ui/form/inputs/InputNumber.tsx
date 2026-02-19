@@ -5,8 +5,7 @@ import { AluInput, AluInputProps } from "./Input";
 export const AluInputNumber = (props: AluInputProps) => {
   return (
     <AluInput
-      {...props}
-      label="Somente números"
+      placeholder="Somente números"
       type="number"
       slotProps={{
         htmlInput: {
@@ -14,6 +13,7 @@ export const AluInputNumber = (props: AluInputProps) => {
           pattern: "[0-9]*",
         },
       }}
+      {...props}
     />
   );
 };

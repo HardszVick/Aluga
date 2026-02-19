@@ -8,3 +8,11 @@ declare module '@mui/material/styles' {
         gradient?: string;
     }
 }
+declare module '@mui/material/Button' {
+    interface ButtonPropsColorOverrides {
+        gradient: true;
+    }
+    interface ButtonPropsVariantOverrides {
+        outlinedBranded: true;
+    }
+}

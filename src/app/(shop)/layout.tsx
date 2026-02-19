@@ -1,5 +1,5 @@
+import { AluShopHeader } from "@/features/shop/components/Header";
 import { Container } from "@mui/material";
-import { AluShopHeader } from "./_components/Header";
 
 type AluShopLayoutProps = {
     children: React.ReactNode

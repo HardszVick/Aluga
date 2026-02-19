@@ -1,0 +1,6 @@
+body {
+    height: 100dvh;
+    width: 100dvw;
+    flex-direction: column;
+    display: flex;
+}
