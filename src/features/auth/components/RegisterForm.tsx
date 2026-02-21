@@ -6,20 +6,27 @@ import { Button, Card, CardContent, CardHeader, Divider, Stack, Typography } fro
 import { AluAuthRegisterData, AluAuthRegisterSchema } from "../schemas/register";
 import { useAluAuthRegisterMutation } from "../hooks/registerMutation";
 import { useRouter } from "next/navigation";
+import { useAluToast } from "@/components/ui/snackbar/hooks/useToast";
 
 export const AluAuthRegisterForm = () => {
-    const { mutateAsync, isPending } = useAluAuthRegisterMutation();
+    const { showError, showSuccess } = useAluToast();
 
-    const { handleSubmit, control } = useForm({
-        resolver: zodResolver(AluAuthRegisterSchema)
-    });
+    const { mutateAsync, isPending } = useAluAuthRegisterMutation();
 
     const router = useRouter();
 
     const onSubmit = async (data: AluAuthRegisterData) => {
         const response = await mutateAsync(data);
-        if (response.success) router.push('/login');
+
+        if (!response.success) return showError(response.message);
+
+        router.push('/login');
+        showSuccess('Cadastro realizado! Agora você já pode acessar sua conta.');
     }
+
+    const { handleSubmit, control } = useForm({
+        resolver: zodResolver(AluAuthRegisterSchema)
+    });
 
     return (
         <Card

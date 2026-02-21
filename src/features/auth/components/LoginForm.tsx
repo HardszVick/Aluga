@@ -6,20 +6,27 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AluAuthLoginData, AluAuthLoginSchema } from "../schemas/login";
 import { useRouter } from "next/navigation";
+import { useAluToast } from "@/components/ui/snackbar/hooks/useToast";
 
 export const AluAuthLoginForm = () => {
+    const { showError, showSuccess } = useAluToast();
+
     const { mutateAsync, isPending } = useAluAuthLoginMutation();
-    
-    const { handleSubmit, control } = useForm({
-        resolver: zodResolver(AluAuthLoginSchema)
-    });
 
     const router = useRouter();
 
     const onSubmit = async (data: AluAuthLoginData) => {
         const response = await mutateAsync(data);
-        if (response.success) router.push('/');
+
+        if (!response.success) return showError(response.message);
+
+        router.push('/');
+        showSuccess('Login efetuado com sucesso.');
     }
+
+    const { handleSubmit, control } = useForm({
+        resolver: zodResolver(AluAuthLoginSchema)
+    });
 
     return (
         <Card
