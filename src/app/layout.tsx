@@ -3,8 +3,10 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { theme } from "@/theme/theme";
+import { aluTheme } from "@/shared/theme/theme";
 import { Nunito, Roboto } from 'next/font/google';
+import { AluQueryClientProvider } from "@/components/providers/QueryClientProvider";
+import { AluSnackbarProvider } from "@/components/ui/snackbar/providers/SnackbarProvider";
 
 type MainProps = {
   children: React.ReactNode;
@@ -13,7 +15,7 @@ type MainProps = {
 const nunito = Nunito({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['900'],
+  weight: ['400', '500', '600', '700', '800', '900'],
   variable: '--font-logo',
 });
 
@@ -24,20 +26,24 @@ const roboto = Roboto({
   variable: '--font-roboto',
 });
 
-const RootLayout = ({ children }: MainProps) => {
+const AluRootLayout = ({ children }: MainProps) => {
   return (
-    <html className={`${nunito.variable} ${roboto.variable}`}>
+    <html suppressHydrationWarning className={`${nunito.variable} ${roboto.variable}`}>
       <body>
-        <AppRouterCacheProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
+        <AluQueryClientProvider>
+          <AppRouterCacheProvider>
+            <ThemeProvider theme={aluTheme}>
+              <CssBaseline />
 
-            {children}
-          </ThemeProvider>
-        </AppRouterCacheProvider>
+              <AluSnackbarProvider>
+                {children}
+              </AluSnackbarProvider>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
+        </AluQueryClientProvider>
       </body>
     </html>
   );
 };
 
-export default RootLayout;
+export default AluRootLayout;

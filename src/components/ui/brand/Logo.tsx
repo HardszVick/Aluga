@@ -1,6 +1,6 @@
-import { Link, Typography } from "@mui/material"
+import { Link, Typography, TypographyProps } from "@mui/material"
 
-export const AluLogo = () => {
+export const AluLogo = ({ ...props }: TypographyProps) => {
     return (
         <Link
             href="/"
@@ -8,10 +8,10 @@ export const AluLogo = () => {
             sx={{ display: 'inline-block' }}
         >
             <Typography 
-                variant="h4" 
+                variant="h4"
                 color="primary.main" 
-                fontFamily="var(--font-logo)" 
                 fontWeight='900'
+                {...props}
             >
                 Aluga Fácil
             </Typography>

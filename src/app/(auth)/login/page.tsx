@@ -1,17 +1,9 @@
 'use client'
 
-import NextLink from "next/link";
-import { Link } from "@mui/material";
+import { AluAuthLoginForm } from "@/features/auth/components/LoginForm";
 
 const AluLogin = () => {
-    return (
-        <Link
-            component={NextLink}
-            href='/register'
-        >
-            Clique aqui caso não possua cadastro
-        </Link>
-    );
+    return <AluAuthLoginForm />
 }
 
 export default AluLogin;
